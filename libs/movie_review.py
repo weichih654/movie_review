@@ -1,7 +1,7 @@
 class MovieReview:
     def __init__ (self, link):
         self.link = link
-        self.parser = None; #PttReviewParser, EyesOpenReviewParser or others
+        self.parser = PttReviewParser(link); #PttReviewParser, EyesOpenReviewParser or others
 
     @property
     def content (self):
@@ -11,13 +11,17 @@ class ReviewParser:
     def __init__ (self, link):
         self.link = link
 
+    @property
+    def content (self):
+        pass
+
 class PttReviewParser(ReviewParser):
     def __init__ (self, link):
         self.link = link
 
     @property
     def content (self):
-        pass
+        return ""
 
 class EyesOpenReviewParser(ReviewParser):
     def __init__ (self, link):
@@ -25,4 +29,4 @@ class EyesOpenReviewParser(ReviewParser):
 
     @property
     def content (self):
-        pass
+        return ""

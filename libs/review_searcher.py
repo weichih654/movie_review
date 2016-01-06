@@ -1,4 +1,4 @@
-class ReviewSearcher:
+class ReviewSeacher:
     def __init__ (self, movie_name):
         self.reviews = []
 
