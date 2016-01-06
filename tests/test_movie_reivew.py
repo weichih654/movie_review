@@ -11,3 +11,9 @@ if __name__ == "__main__":
     print "link = " + url
     print "type = "
     print "content = " + review.content
+
+    url = "https://www.ptt.cc/bbs/C_Chat/M.1439806805.A.32F.html"
+    review = MovieReview (url)
+    print "link = " + url
+    print "type = "
+    print "content = " + review.content
