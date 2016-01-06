@@ -9,11 +9,11 @@ if __name__ == "__main__":
     url = "https://www.ptt.cc/bbs/movie/M.1438186905.A.0EF.html"
     review = MovieReview (url)
     print "link = " + url
-    print "type = "
+    print "type = " + review.type
     print "content = " + review.content
 
     url = "https://www.ptt.cc/bbs/C_Chat/M.1439806805.A.32F.html"
     review = MovieReview (url)
     print "link = " + url
-    print "type = "
+    print "type = " + review.type
     print "content = " + review.content

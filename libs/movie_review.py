@@ -14,12 +14,20 @@ class MovieReview:
     def content (self):
         return self.parser.content
 
+    @property
+    def type (self):
+        return self.parser.type
+
 class ReviewParser:
     def __init__ (self, link):
         self.link = link
 
     @property
     def content (self):
+        pass
+
+    @property
+    def type (self):
         pass
 
 class PttReviewParser(ReviewParser):
@@ -35,6 +43,10 @@ class PttReviewParser(ReviewParser):
         cont = remove_string ("http[\w\/:\.-]*", cont)
         return cont
 
+    @property
+    def type (self):
+        return "PTT"
+
 class EyesOpenReviewParser(ReviewParser):
     def __init__ (self, link):
         self.link = link
@@ -42,3 +54,7 @@ class EyesOpenReviewParser(ReviewParser):
     @property
     def content (self):
         return ""
+
+    @property
+    def type (self):
+        pass
