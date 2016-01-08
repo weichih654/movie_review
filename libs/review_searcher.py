@@ -5,7 +5,7 @@ class ReviewSeacher:
     def __init__ (self, movie_name):
         keyword = movie_name + "%20site:ptt.cc"
         url = "http://www.google.com/search?q=" + keyword
-        self.reviews = []
+        self.__reviews = []
         self.__get_links_by_url (url)
 
     def __get_links_by_url (self, url):
@@ -18,8 +18,9 @@ class ReviewSeacher:
         self.html = data
 
         m = re.findall ("https:\/\/www\.ptt\.cc\/bbs\/movie.*?html", self.html)
-        self.reviews.extend (m)
+        self.__reviews.extend (m)
 
     @property
     def reviews (self):
-        return self.reviews
+        l = list(set(self.__reviews))
+        return l
