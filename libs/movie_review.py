@@ -1,5 +1,6 @@
 import urllib2
 import re
+import time
 
 def remove_string (pattern, content):
     m = re.sub (pattern, "", content)
@@ -8,7 +9,11 @@ def remove_string (pattern, content):
 class MovieReview:
     def __init__ (self, link):
         self.link = link
-        self.parser = PttReviewParser(link); #PttReviewParser, EyesOpenReviewParser or others
+        self.parser = None
+        if "moviemovie" in link:
+            self.parser = MovieMovieReviewParser(link); #PttReviewParser, MovieMovieReviewParser or others
+        elif "ptt.cc" in link:
+            self.parser = PttReviewParser(link); #PttReviewParser, MovieMovieReviewParser or others
 
     @property
     def content (self):
@@ -32,6 +37,7 @@ class ReviewParser:
 
 class PttReviewParser(ReviewParser):
     def __init__ (self, link):
+        time.sleep(1)
         self.link = link
         response = urllib2.urlopen(link)
         self.html = response.read()
@@ -47,14 +53,20 @@ class PttReviewParser(ReviewParser):
     def type (self):
         return "PTT"
 
-class EyesOpenReviewParser(ReviewParser):
+class MovieMovieReviewParser(ReviewParser):
     def __init__ (self, link):
+        time.sleep(1)
         self.link = link
+        response = urllib2.urlopen(link)
+        self.html = response.read()
 
     @property
     def content (self):
-        return ""
+        m = re.search('.*?<div class=\"article\">(.*?)\.program_db_link', str(self.html), re.DOTALL)
+        cont = remove_string ("<.*?>", m.group(1))
+        cont = remove_string ("http[\w\/:\.-]*", cont)
+        return cont
 
     @property
     def type (self):
-        pass
+        return "MOVIEMOVIE"
