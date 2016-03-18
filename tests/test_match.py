@@ -19,16 +19,26 @@ def readfile(filename):
     return content
 
 if __name__ == "__main__":
-    content = readfile (sys.argv[1])
-    movie_name = "不可能的任務5"
+    input_file = sys.argv[1]
+    content = readfile (input_file)
+    print "check file " + input_file
+    movie_name = "新世紀福爾摩斯"
     searcher = ReviewSeacher (movie_name)
     allurl = searcher.reviews
+    i = 0
     for p in allurl:
         review = MovieReview (p)
-        print "link = " + p
+        #print "link = " + p
         #print "type = " + review.type
         #print "content = " + review.content
         matcher = Matcher()
         ratio = matcher.match (content, review.content)
-        print "ratio = " + str(ratio) + " %"
+        if ratio > 40:
+            print "ratio = " + str(ratio) + " %"
+            print "link = " + p
+        i = i + 1
+        progress = (i * 100 / len(allurl)) 
+        sys.stdout.write("\r%d %%" % progress)
+        sys.stdout.flush()
+    print "\n"    
 
