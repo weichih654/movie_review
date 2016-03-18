@@ -5,7 +5,7 @@ import time
 class ReviewSeacher:
     def __init__ (self, movie_name):
         keyword = movie_name + "%20site:www.moviemovie.com.tw%20||%20site:ptt.cc"
-        self.url = "http://www.google.com/search?q=" + keyword + "&num=1000"
+        self.url = "https://www.google.com/search?q=" + keyword + "&num=1000"
         self.__reviews = []
 
     def __get_links_by_url (self, url):
