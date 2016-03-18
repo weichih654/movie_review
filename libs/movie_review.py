@@ -65,6 +65,7 @@ class MovieMovieReviewParser(ReviewParser):
         m = re.search('.*?<div class=\"article\">(.*?)\.program_db_link', str(self.html), re.DOTALL)
         cont = remove_string ("<.*?>", m.group(1))
         cont = remove_string ("http[\w\/:\.-]*", cont)
+        cont = remove_string ("^--$", cont)
         return cont
 
     @property
