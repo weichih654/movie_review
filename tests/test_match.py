@@ -40,7 +40,7 @@ def match (filename, movie_name):
             review = reviews[p]
         matcher = Matcher()
         ratio = matcher.match (content, review.content)
-        if ratio > 35:
+        if ratio > 50:
             print "ratio = " + str(ratio) + " %"
             print "link = " + p
         i = i + 1

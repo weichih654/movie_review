@@ -45,6 +45,8 @@ class PttReviewParser(ReviewParser):
     @property
     def content (self):
         m = re.search('.*article-meta-value.*?<\/div\>(.*)\xe2\x80\xbb \xe7\x99\xbc\xe4\xbf\xa1\xe7\xab\x99', str(self.html), re.DOTALL)
+        if m is None:
+            return None
         cont = remove_string ("<.*?>", m.group(1))
         cont = remove_string ("http[\w\/:\.-]*", cont)
         return cont
